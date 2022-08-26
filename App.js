@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import BleshSdk from '@blesh/blesh-react-native-sdk';
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -53,6 +55,19 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
+  // configure the Blesh SDK for release mode
+  BleshSdk.configure({"adsEnabled": true, "testMode": false});
+
+  // start the BleshSDK with a sample user data
+  BleshSdk.start({
+    "userId": "42",
+    "email": "jane.doe@example.com",
+    "gender": 0,
+    "yearOfBirth": 1999
+  })
+  .then((state) => console.log("State: " + state))
+  .catch((code) => console.log(code));
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
