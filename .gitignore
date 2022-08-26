@@ -61,3 +61,10 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+# Dist
+
+android/app/build/
+*.tgz
+ios/Pods/
+ios/build/
